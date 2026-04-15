@@ -183,7 +183,7 @@ if(cursorGlow) {
 }
 
 // 3. Typewriter Effect
-const roles = ["IT & MIS Specialist", "Cybersecurity MS Candidate", "Full Stack Developer", "Data Architect"];
+const roles = ["IT & MIS Specialist", "Cybersecurity MS Candidate", "Full Stack Developer", "Data Architect", "Graduate Assistant"];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
