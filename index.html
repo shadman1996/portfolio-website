@@ -69,7 +69,7 @@
           </div>
           <div class="stat-divider"></div>
           <div class="stat">
-            <span class="stat-num">20+</span>
+            <span class="stat-num">100+</span>
             <span class="stat-label">Projects</span>
           </div>
         </div>
@@ -348,9 +348,202 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-tag">Work</span>
-        <h2 class="section-title">Featured Projects</h2>
+        <h2 class="section-title">Projects & Builds</h2>
+        <p class="section-sub">100+ projects spanning cybersecurity platforms, AI agents, full-stack apps, automation tools, and enterprise systems.</p>
       </div>
-      <div class="projects-grid">
+
+      <!-- Filter Tabs -->
+      <div class="project-filters reveal">
+        <button class="pf-btn active" data-filter="all" id="pf-all">⚡ All</button>
+        <button class="pf-btn" data-filter="live" id="pf-live">🟢 Live</button>
+        <button class="pf-btn" data-filter="ai" id="pf-ai">🤖 AI Powered</button>
+        <button class="pf-btn" data-filter="upcoming" id="pf-upcoming">🚀 Upcoming</button>
+        <button class="pf-btn" data-filter="security" id="pf-security">🔐 Security</button>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+
+        <!-- BENGAL BOUND - UPCOMING HERO -->
+        <div class="project-card glass reveal project-upcoming-hero" data-category="ai upcoming">
+          <div class="project-card-top">
+            <div class="project-label upcoming-label">🚀 Upcoming · AI Platform</div>
+          </div>
+          <div class="bengal-bound-header">
+            <span class="bb-logo">🐯</span>
+            <div>
+              <h3 class="project-title" style="margin-bottom:4px">Bengal Bound</h3>
+              <p class="bb-tagline">The World's First AI-Powered Business Workforce</p>
+            </div>
+          </div>
+          <p class="project-desc">A full-scale AI marketplace platform where businesses hire <strong>AI employees</strong> — not tools. Each AI handles a dedicated business role with autonomous decision-making, memory, and real-time integrations.</p>
+          <div class="bb-employees">
+            <div class="bb-emp-label">Meet the AI Team:</div>
+            <div class="bb-emp-grid">
+              <div class="bb-emp">🧑‍💼<span>CEO Advisor</span></div>
+              <div class="bb-emp">📊<span>CFO / Finance</span></div>
+              <div class="bb-emp">👥<span>HR Manager</span></div>
+              <div class="bb-emp">📋<span>Project Manager</span></div>
+              <div class="bb-emp">📞<span>AI Receptionist</span></div>
+              <div class="bb-emp">⚖️<span>Legal Counsel</span></div>
+              <div class="bb-emp">📣<span>Marketing Lead</span></div>
+              <div class="bb-emp">🛒<span>Sales Rep</span></div>
+              <div class="bb-emp">🔧<span>IT Support</span></div>
+              <div class="bb-emp">🔮<span>+11 more...</span></div>
+            </div>
+          </div>
+          <div class="bb-stack">
+            <span>Django</span><span>Gemini AI</span><span>Twilio</span><span>Google Cloud</span><span>Firebase</span><span>Netlify CI/CD</span>
+          </div>
+        </div>
+
+        <!-- AEGIS - LIVE FEATURED -->
+        <div class="project-card glass reveal featured" data-category="live ai security">
+          <div class="project-card-top">
+            <div class="project-label">🟢 Live · Featured</div>
+            <div class="project-links">
+              <a href="https://github.com/shadman1996/Aegis" target="_blank" rel="noopener" class="project-link" aria-label="Aegis GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">🛡️ Aegis</h3>
+          <p class="project-desc">Enterprise Security SaaS — "Zero Breakage. One Click." AI-driven vulnerability remediation engine with Stripe credit billing, Supabase auth, and an admin dashboard.</p>
+          <div class="project-tags"><span>TypeScript</span><span>FastAPI</span><span>Supabase</span><span>Stripe</span><span>AI</span></div>
+        </div>
+
+        <!-- PORTFOLIO WEBSITE - LIVE -->
+        <div class="project-card glass reveal" data-category="live">
+          <div class="project-card-top">
+            <div class="project-label live-label">🟢 Live</div>
+            <div class="project-links">
+              <a href="https://eclectic-cat-832cc1.netlify.app" target="_blank" rel="noopener" class="project-link" aria-label="Portfolio Live">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+              <a href="https://github.com/shadman1996/portfolio-website" target="_blank" rel="noopener" class="project-link" aria-label="Portfolio GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">🌐 This Portfolio</h3>
+          <p class="project-desc">Premium dark-theme portfolio built from scratch — responsive, animated, with glassmorphism UI, scroll reveals, tabbed certs, and auto-deploy via Netlify CI/CD.</p>
+          <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Netlify</span></div>
+        </div>
+
+        <!-- OPENCLAW SENTINEL - LIVE -->
+        <div class="project-card glass reveal" data-category="live security">
+          <div class="project-card-top">
+            <div class="project-label live-label">🟢 Live</div>
+            <div class="project-links">
+              <a href="https://github.com/shadman1996/openclaw-sentinel" target="_blank" rel="noopener" class="project-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">🔍 OpenClaw Sentinel</h3>
+          <p class="project-desc">Cybersecurity passive monitoring and threat detection system. Real-time network analysis with automated alerting engine and log correlation.</p>
+          <div class="project-tags"><span>Python</span><span>Cybersecurity</span><span>Network Analysis</span></div>
+        </div>
+
+        <!-- GEMINI DESKTOP AGENT - LIVE AI -->
+        <div class="project-card glass reveal" data-category="live ai">
+          <div class="project-card-top">
+            <div class="project-label live-label">🟢 Live · AI</div>
+            <div class="project-links">
+              <a href="https://github.com/shadman1996/gemini-desktop-agent" target="_blank" rel="noopener" class="project-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">🤖 Gemini Desktop Agent</h3>
+          <p class="project-desc">AI agent powered by Google Gemini vision — sees your screen and autonomously performs tasks. Cross-platform: Windows, macOS, Linux.</p>
+          <div class="project-tags"><span>Python</span><span>Google Gemini</span><span>AI Agent</span><span>Cross-platform</span></div>
+        </div>
+
+        <!-- OPENCLAW LINEAGE -->
+        <div class="project-card glass reveal" data-category="security">
+          <div class="project-card-top">
+            <div class="project-links">
+              <a href="https://github.com/shadman1996/openclaw-lineage" target="_blank" rel="noopener" class="project-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">🧬 OpenClaw Lineage</h3>
+          <p class="project-desc">Cybersecurity intelligence platform for tracking attack lineages, threat actor patterns, and exploit genealogy across incident timelines.</p>
+          <div class="project-tags"><span>Python</span><span>Threat Intelligence</span><span>Cybersecurity</span></div>
+        </div>
+
+        <!-- AI VOICE RECEPTIONIST - UPCOMING -->
+        <div class="project-card glass reveal" data-category="ai upcoming">
+          <div class="project-card-top">
+            <div class="project-label upcoming-label">🚀 Upcoming · AI</div>
+          </div>
+          <h3 class="project-title">📞 AI Voice Receptionist</h3>
+          <p class="project-desc">Inbound call handler powered by Gemini AI — processes intent, schedules meetings via Google Calendar, filters spam in real-time, and sends SMS notifications via Twilio.</p>
+          <div class="project-tags"><span>Gemini AI</span><span>Twilio</span><span>Google Calendar</span><span>Django</span><span>Firebase</span></div>
+        </div>
+
+        <!-- DOCTOR RECOMMENDATION SYSTEM -->
+        <div class="project-card glass reveal" data-category="live">
+          <div class="project-card-top">
+            <div class="project-label live-label">🟢 Live</div>
+            <div class="project-links">
+              <a href="https://github.com/Shadman-2021/doctor-web" target="_blank" rel="noopener" class="project-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">🩺 Doctor Recommendation System</h3>
+          <p class="project-desc">Full-stack web & mobile app — patients get matched with doctors by symptoms, location & availability. Includes React Native mobile app.</p>
+          <div class="project-tags"><span>Django</span><span>React</span><span>React Native</span><span>Python</span></div>
+        </div>
+
+        <!-- WHATSAPP AUTOMATION -->
+        <div class="project-card glass reveal" data-category="live">
+          <div class="project-card-top">
+            <div class="project-label live-label">🟢 Live</div>
+            <div class="project-links">
+              <a href="https://github.com/Shadman-2021/Whatsapp_mobile_automation" target="_blank" rel="noopener" class="project-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">📱 WhatsApp Mobile Automation</h3>
+          <p class="project-desc">Mobile automation suite for WhatsApp using Python and Appium — used for QA testing and business workflow automation.</p>
+          <div class="project-tags"><span>Python</span><span>Appium</span><span>Mobile Automation</span></div>
+        </div>
+
+        <!-- ALIBABA TESTING -->
+        <div class="project-card glass reveal" data-category="live">
+          <div class="project-card-top">
+            <div class="project-label live-label">🟢 Live</div>
+            <div class="project-links">
+              <a href="https://github.com/Shadman-2021/Alibaba-Testing-" target="_blank" rel="noopener" class="project-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-title">🛒 Alibaba Test Automation</h3>
+          <p class="project-desc">End-to-end test automation suite for Alibaba e-commerce — full browser workflow simulation using Python and Selenium WebDriver.</p>
+          <div class="project-tags"><span>Python</span><span>Selenium</span><span>E2E Testing</span></div>
+        </div>
+
+        <!-- ACCOUNTING SYSTEM -->
+        <div class="project-card glass reveal" data-category="live">
+          <div class="project-card-top">
+            <div class="project-label live-label">🟢 Live</div>
+          </div>
+          <h3 class="project-title">💰 Enterprise Accounting System</h3>
+          <p class="project-desc">Full-stack accounting platform built at Accomium — multi-module financial management with real-time charts, role-based access, and state management.</p>
+          <div class="project-tags"><span>Vue 3</span><span>Nuxt 3</span><span>Laravel</span><span>PostgreSQL</span><span>Chart.js</span></div>
+        </div>
+
+      </div>
+      <div class="projects-cta reveal">
+        <a href="https://github.com/shadman1996" target="_blank" rel="noopener" class="btn btn-ghost" id="view-all-projects-btn">View All 100+ on GitHub →</a>
+      </div>
+    </div>
+  </section>
 
         <div class="project-card glass reveal featured">
           <div class="project-card-top">
