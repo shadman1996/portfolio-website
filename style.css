@@ -1146,3 +1146,6 @@ img { max-width: 100%; display: block; }
 @keyframes blink {
   50% { opacity: 0; }
 }
+
+.tl-company-logo:hover { transform: scale(1.1); box-shadow: 0 0 15px rgba(255,255,255,0.2); }
+
