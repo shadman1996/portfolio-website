@@ -372,23 +372,35 @@ img { max-width: 100%; display: block; }
   object-fit: cover;
   object-position: center top;
 }
+/* 6 orbital badges — each placed on the outer ring circumference, rotating */
 .image-badge {
   position: absolute;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 16px;
-  background: rgba(8,12,20,0.9);
+  padding: 8px 14px;
+  background: rgba(8,12,20,0.92);
   border: 1px solid var(--border);
   border-radius: 50px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   backdrop-filter: blur(12px);
   z-index: 3;
   color: var(--accent);
+  white-space: nowrap;
+  animation: orbit-badge 18s linear infinite;
 }
-.ib-1 { top: 40px; right: 10px; }
-.ib-2 { bottom: 60px; left: 10px; }
+.ib-1 { animation-delay:   0s; }
+.ib-2 { animation-delay:  -3s; }
+.ib-3 { animation-delay:  -6s; }
+.ib-4 { animation-delay:  -9s; }
+.ib-5 { animation-delay: -12s; }
+.ib-6 { animation-delay: -15s; }
+
+@keyframes orbit-badge {
+  0%   { transform: rotate(0deg)   translateX(230px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(230px) rotate(-360deg); }
+}
 
 .hero-scroll {
   position: absolute;
