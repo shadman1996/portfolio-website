@@ -160,3 +160,58 @@ const statObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 statNums.forEach(el => statObserver.observe(el));
+
+/* ===========================
+   PREMIUM UX ANIMATIONS
+=========================== */
+
+// 1. Scroll Progress Bar
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  const progressBar = document.getElementById('scroll-progress');
+  if(progressBar) progressBar.style.width = scrolled + '%';
+});
+
+// 2. Dynamic Cursor Glow
+const cursorGlow = document.getElementById('cursor-glow');
+if(cursorGlow) {
+  document.addEventListener('mousemove', (e) => {
+    cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  });
+}
+
+// 3. Typewriter Effect
+const roles = ["IT & MIS Specialist", "Cybersecurity MS Candidate", "Full Stack Developer", "Data Architect"];
+let roleIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typeWriterElement = document.getElementById('typewriter');
+
+function typeWriter() {
+  if(!typeWriterElement) return;
+  const currentRole = roles[roleIndex];
+  
+  if (isDeleting) {
+    typeWriterElement.textContent = currentRole.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    typeWriterElement.textContent = currentRole.substring(0, charIndex + 1);
+    charIndex++;
+  }
+
+  let typeSpeed = isDeleting ? 40 : 80;
+
+  if (!isDeleting && charIndex === currentRole.length) {
+    typeSpeed = 2000; // Pause at end of word
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    roleIndex = (roleIndex + 1) % roles.length;
+    typeSpeed = 500; // Pause before new word
+  }
+  
+  setTimeout(typeWriter, typeSpeed);
+}
+document.addEventListener('DOMContentLoaded', typeWriter);
