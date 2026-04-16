@@ -294,3 +294,38 @@ if (profilePhoto) {
 
 // Close mobile navbar on link click
 document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { document.querySelector('.nav-links').classList.remove('open'); }); });
+
+// ===== 6. THEME MANAGER (Antigravity Toggle) =====
+const themeToggle = document.getElementById('theme-toggle');
+
+function setTheme(isLight) {
+  const pulseSpan = document.querySelector('.sp-pulse');
+  const detailDiv = document.querySelector('.sp-detail');
+
+  if (isLight) {
+    document.documentElement.classList.add('light-mode');
+    document.body.classList.add('light-mode');
+    document.body.classList.remove('dark-mode');
+    localStorage.setItem('theme', 'light');
+    if (pulseSpan) pulseSpan.innerText = 'NOMINAL';
+    if (detailDiv) detailDiv.innerText = '[SYSTEM STABILIZED]';
+  } else {
+    document.documentElement.classList.remove('light-mode');
+    document.body.classList.remove('light-mode');
+    document.body.classList.add('dark-mode');
+    localStorage.setItem('theme', 'dark');
+    if (pulseSpan) pulseSpan.innerText = 'ENGAGED';
+    if (detailDiv) detailDiv.innerHTML = '[STATUS: ACTIVE - <span id="sp-val">85</span>% LIFT]';
+  }
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const currentlyLight = document.documentElement.classList.contains('light-mode');
+    setTheme(!currentlyLight);
+  });
+  
+  // Hydrate text based on FOUC pre-load state
+  const isPreloadedLight = document.documentElement.classList.contains('light-mode');
+  if (isPreloadedLight) setTheme(true);
+}
