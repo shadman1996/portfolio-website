@@ -580,16 +580,18 @@ img { max-width: 100%; display: block; }
 .tl-bullets li {
   font-size: 0.9rem;
   color: var(--text-secondary);
-  padding: 5px 0 5px 20px;
-  position: relative;
+  padding: 5px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   line-height: 1.6;
 }
 .tl-bullets li::before {
   content: '→';
-  position: absolute;
-  left: 0;
   color: var(--accent);
   font-size: 0.8rem;
+  margin-top: 2px;
+  flex-shrink: 0;
 }
 .tl-bullets li strong { color: var(--text-primary); }
 .tl-tags { display: flex; flex-wrap: wrap; gap: 8px; }
