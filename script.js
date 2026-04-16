@@ -213,7 +213,7 @@ if(cursorGlow) {
 }
 
 // 3. Typewriter Effect
-const roles = ["IT & MIS Specialist", "Cybersecurity MS Candidate", "Full Stack Developer", "Data Architect", "Graduate Assistant at Technology Resource Center"];
+const roles = ["IT & MIS Specialist", "Cybersecurity MS Candidate", "Full Stack Developer", "Data Architect", "Ethical Hacker", "Graduate Assistant at Technology Resource Center"];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -245,3 +245,27 @@ function typeWriter() {
   setTimeout(typeWriter, typeSpeed);
 }
 document.addEventListener('DOMContentLoaded', typeWriter);
+
+// 4. Voice Tour feature
+const profilePhoto = document.getElementById('profile-photo');
+if (profilePhoto) {
+  profilePhoto.style.cursor = 'pointer';
+  profilePhoto.addEventListener('click', () => {
+    const wrapper = profilePhoto.closest('.image-wrapper');
+    if (wrapper) wrapper.style.boxShadow = '0 0 100px #2563EB, inset 0 0 50px #2563EB';
+    
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const msg = new SpeechSynthesisUtterance("Welcome to my digital portfolio. I am Shadman, an IT and M.I.S Specialist, and Ethical Hacker. Feel free to explore my background, projects, and certifications in the sections below.");
+      msg.rate = 0.95;
+      
+      msg.onend = () => {
+        if (wrapper) wrapper.style.boxShadow = '';
+      };
+      window.speechSynthesis.speak(msg);
+    }
+  });
+}
+
+// Close mobile navbar on link click
+document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { document.querySelector('.nav-links').classList.remove('open'); }); });
