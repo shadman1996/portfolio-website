@@ -1,4 +1,4 @@
-﻿/* ===== RESET & BASE ===== */
+/* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -348,30 +348,50 @@ img { max-width: 100%; display: block; }
 .image-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(0,242,255,0.08);
   animation: spin-slow 20s linear infinite;
 }
-.image-ring-outer { width: 460px; height: 460px; }
-.image-ring-mid { width: 380px; height: 380px; animation-direction: reverse; animation-duration: 14s; }
+/* Outer ring — dashed cyan */
+.image-ring-outer {
+  width: 460px; height: 460px;
+  border: 1.5px dashed rgba(0,242,255,0.35);
+  box-shadow: 0 0 20px rgba(0,242,255,0.08), inset 0 0 20px rgba(0,242,255,0.04);
+}
+/* Mid ring — solid electric purple */
+.image-ring-mid {
+  width: 385px; height: 385px;
+  border: 1px solid rgba(112,0,255,0.4);
+  box-shadow: 0 0 16px rgba(112,0,255,0.15);
+  animation-direction: reverse;
+  animation-duration: 14s;
+}
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to   { transform: rotate(360deg); }
 }
+/* Profile photo wrapper — neon cyan glowing frame */
 .image-wrapper {
   width: 320px;
   height: 320px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid rgba(0,242,255,0.08);
-  box-shadow: 0 0 60px rgba(0,242,255,0.08), 0 0 120px rgba(0,242,255,0.06);
+  border: 2px solid #00F2FF;
+  box-shadow:
+    0 0 0 6px rgba(0,242,255,0.08),
+    0 0 40px rgba(0,242,255,0.45),
+    0 0 80px rgba(0,242,255,0.18),
+    0 0 120px rgba(112,0,255,0.12),
+    inset 0 0 30px rgba(0,242,255,0.06);
   position: relative;
   z-index: 2;
+  background: radial-gradient(circle at 30% 30%, rgba(0,242,255,0.06), transparent 70%);
 }
 .profile-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  filter: contrast(1.05) saturate(1.1);
+  mix-blend-mode: normal;
 }
 /* 6 orbital badges â€” each placed on the outer ring circumference, rotating */
 .image-badge {
@@ -380,16 +400,18 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 8px;
   padding: 8px 14px;
-  background: rgba(11,14,20,0.92);
-  border: 1px solid var(--border);
+  background: rgba(11,14,20,0.88);
+  border: 1px solid rgba(0,242,255,0.3);
   border-radius: 50px;
   font-size: 0.75rem;
   font-weight: 600;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
   z-index: 3;
-  color: var(--accent);
+  color: #00F2FF;
   white-space: nowrap;
   animation: orbit-badge 18s linear infinite;
+  box-shadow: 0 0 12px rgba(0,242,255,0.2), inset 0 1px 0 rgba(255,255,255,0.06);
+  text-shadow: 0 0 8px rgba(0,242,255,0.6);
 }
 .ib-1 { animation-delay:   0s; }
 .ib-2 { animation-delay:  -3s; }
