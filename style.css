@@ -1,4 +1,4 @@
-﻿/* ===== RESET & BASE ===== */
+/* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -527,7 +527,7 @@ img { max-width: 100%; display: block; }
   width: 16px; height: 16px;
   background: var(--accent-grad);
   border-radius: 50%;
-  box-shadow: 0 0 16px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  box-shadow: 0 0 16px rgba(37,99,235,0.4);
 }
 .timeline-date {
   font-size: 0.85rem;
@@ -567,9 +567,9 @@ img { max-width: 100%; display: block; }
   font-size: 0.74rem;
   font-weight: 600;
   border-radius: 50px;
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  background: rgba(37,99,235,0.1);
   color: var(--accent);
-  border: 1px solid  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  border: 1px solid rgba(37,99,235,0.3);
   white-space: nowrap;
 }
 .tl-bullets {
@@ -585,7 +585,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
 }
 .tl-bullets li::before {
-  content: 'ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢';
+  content: '→';
   position: absolute;
   left: 0;
   color: var(--accent);
@@ -1090,7 +1090,7 @@ img { max-width: 100%; display: block; }
 
   /* Hero */
   .hero-container { grid-template-columns: 1fr; gap: 40px; }
-  .hero-image { order: -1; }
+  .hero-image { order: -1; transform: scale(0.75); transform-origin: center; margin: -40px 0; }
   .image-ring-outer { width: 300px; height: 300px; }
   .image-ring-mid { width: 240px; height: 240px; }
   .image-wrapper { width: 220px; height: 220px; }
