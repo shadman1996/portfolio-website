@@ -240,6 +240,16 @@ function playTourSegment(index) {
       window.speechSynthesis.cancel();
       const msg = new SpeechSynthesisUtterance(segment.text);
       msg.rate = 0.95;
+      msg.pitch = 1.05; // Slightly higher pitch for clarity
+      
+      // Auto-select the most natural English voice available
+      const voices = window.speechSynthesis.getVoices();
+      let bestVoice = voices.find(v => v.name.includes('Google US English') || v.name.includes('Google UK English Male')) || 
+                      voices.find(v => v.name.includes('Natural') || v.name.includes('Premium')) ||
+                      voices.find(v => v.name.includes('Mark') || v.name.includes('Samantha')) ||
+                      voices.find(v => v.lang === 'en-US' || v.lang === 'en-GB');
+                      
+      if (bestVoice) msg.voice = bestVoice;
       
       msg.onend = () => {
         targetEl.style.boxShadow = originalShadow;
