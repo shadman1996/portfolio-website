@@ -1,4 +1,4 @@
-/* ===== RESET & BASE ===== */
+﻿/* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -352,13 +352,13 @@ img { max-width: 100%; display: block; }
   border-radius: 50%;
   animation: spin-slow 20s linear infinite;
 }
-/* Outer ring â€” dashed cyan */
+/* Outer ring Ã¢â‚¬â€ dashed cyan */
 .image-ring-outer {
   width: 460px; height: 460px;
   border: 1.5px dashed  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
   box-shadow: 0 0 20px  "rgba(37,99,235,$($args[0].Groups[1].Value))" , inset 0 0 20px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
 }
-/* Mid ring â€” solid electric purple */
+/* Mid ring Ã¢â‚¬â€ solid electric purple */
 .image-ring-mid {
   width: 385px; height: 385px;
   border: 1px solid  "rgba(190,18,60,$($args[0].Groups[1].Value))" ;
@@ -370,7 +370,7 @@ img { max-width: 100%; display: block; }
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
-/* Profile photo wrapper â€” neon cyan glowing frame */
+/* Profile photo wrapper Ã¢â‚¬â€ neon cyan glowing frame */
 .image-wrapper {
   width: 320px;
   height: 320px;
@@ -395,7 +395,7 @@ img { max-width: 100%; display: block; }
   filter: contrast(1.05) saturate(1.1);
   mix-blend-mode: normal;
 }
-/* 6 orbital badges Ã¢â‚¬â€ each placed on the outer ring circumference, rotating */
+/* 6 orbital badges ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â each placed on the outer ring circumference, rotating */
 .image-badge {
   position: absolute;
   display: flex;
@@ -585,7 +585,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
 }
 .tl-bullets li::before {
-  content: 'Ã¢â€ â€™';
+  content: 'ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢';
   position: absolute;
   left: 0;
   color: var(--accent);
@@ -1173,196 +1173,6 @@ img { max-width: 100%; display: block; }
 }
 
 .tl-company-logo:hover { transform: scale(1.1); box-shadow: 0 0 15px rgba(255,255,255,0.2); }
-
-
-
-/* ===========================
-   NEON CYBERPUNK THEME SYSTEM
-=========================== */
-
-/* Body ambient glow */
-body {
-  background-image:
-    radial-gradient(ellipse 80% 60% at 70% -10%, rgba(139,92,246,0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at -10% 80%, rgba(232,121,249,0.10) 0%, transparent 60%);
-}
-
-/* Purple grid lines */
-.hero-grid {
-  background-image:
-    linear-gradient(rgba(139,92,246,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139,92,246,0.07) 1px, transparent 1px) !important;
-  background-size: 60px 60px !important;
-}
-
-/* Hero glow orbs - purple & magenta */
-.glow-1 {
-  background: radial-gradient(circle, #BE123C, transparent) !important;
-  opacity: 0.25 !important;
-}
-.glow-2 {
-  background: radial-gradient(circle, #BE123C, transparent) !important;
-  opacity: 0.2 !important;
-}
-
-/* Navbar scrolled - deep purple */
-.navbar.scrolled {
-  background: rgba(11,14,20,0.92) !important;
-  border-bottom: 1px solid  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  box-shadow: 0 4px 32px  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-}
-
-/* Gradient text - purple to magenta */
-.gradient-text {
-  background: linear-gradient(135deg, #2563EB 0%, #BE123C 60%, #f9a8d4 100%) !important;
-}
-
-/* Hero badge - neon purple outline */
-.hero-badge {
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  background: rgba(139,92,246,0.08) !important;
-  box-shadow: 0 0 12px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
-}
-.badge-dot {
-  background: #2563EB !important;
-  box-shadow: 0 0 8px #2563EB;
-}
-
-/* Glass cards - purple neon glow */
-.glass {
-  box-shadow: 0 4px 24px  "rgba(37,99,235,$($args[0].Groups[1].Value))" , inset 0 1px 0 rgba(255,255,255,0.04) !important;
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-}
-.glass:hover {
-  box-shadow: 0 0 28px  "rgba(37,99,235,$($args[0].Groups[1].Value))" , 0 0 8px  "rgba(190,18,60,$($args[0].Groups[1].Value))" , 0 8px 32px rgba(0,0,0,0.4) !important;
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-}
-
-/* Primary buttons - glowing purple */
-.btn-primary {
-  background: linear-gradient(135deg, #BE123C, #2563EB) !important;
-  box-shadow: 0 4px 20px  "rgba(37,99,235,$($args[0].Groups[1].Value))" , 0 0 40px  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-}
-.btn-primary:hover {
-  box-shadow: 0 8px 30px  "rgba(37,99,235,$($args[0].Groups[1].Value))" , 0 0 60px  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  transform: translateY(-2px) !important;
-}
-
-/* Ghost buttons - neon purple border */
-.btn-ghost {
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-}
-.btn-ghost:hover {
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  color: #BE123C !important;
-  box-shadow: 0 0 20px  "rgba(190,18,60,$($args[0].Groups[1].Value))"  !important;
-  background: rgba(139,92,246,0.08) !important;
-}
-
-/* Section tags */
-.section-tag {
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  color: #2563EB !important;
-  box-shadow: 0 0 16px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
-}
-
-/* Section title */
-.section-title {
-  text-shadow: 0 0 40px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
-}
-
-/* Timeline dots - neon purple */
-.timeline-dot {
-  background: var(--accent-grad) !important;
-  box-shadow: 0 0 14px  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-}
-.timeline-dot::after {
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-}
-
-/* Timeline line - purple */
-.timeline::before {
-  background: linear-gradient(to bottom, transparent, #BE123C 20%, #BE123C 80%, transparent) !important;
-}
-
-/* Timeline tags */
-.tl-tags span, .edu-projects span {
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  color: #2563EB !important;
-}
-.tl-tags span:hover, .edu-projects span:hover {
-  background:  "rgba(190,18,60,$($args[0].Groups[1].Value))"  !important;
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  color: #BE123C !important;
-  box-shadow: 0 0 10px  "rgba(190,18,60,$($args[0].Groups[1].Value))" ;
-}
-
-/* Skill tags - neon purple chips */
-.skill-tags span {
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  border: 1px solid  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  color: #2563EB !important;
-  transition: all 0.2s ease;
-}
-.skill-tags span:hover {
-  background:  "rgba(190,18,60,$($args[0].Groups[1].Value))"  !important;
-  border-color: #BE123C !important;
-  color: #BE123C !important;
-  box-shadow: 0 0 12px  "rgba(190,18,60,$($args[0].Groups[1].Value))" ;
-}
-
-/* Cert tabs */
-.cert-tab.active {
-  background: linear-gradient(135deg, #BE123C, #2563EB) !important;
-  box-shadow: 0 4px 16px  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-}
-
-/* Contact items */
-.contact-item-icon {
-  background: linear-gradient(135deg,  "rgba(37,99,235,$($args[0].Groups[1].Value))" ,  "rgba(190,18,60,$($args[0].Groups[1].Value))" ) !important;
-}
-
-/* Scroll progress bar - purple to magenta */
-#scroll-progress {
-  background: linear-gradient(90deg, #BE123C, #2563EB) !important;
-  box-shadow: 0 0 10px  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-}
-
-/* Cursor glow - purple */
-#cursor-glow {
-  background: radial-gradient(circle,  "rgba(37,99,235,$($args[0].Groups[1].Value))"  0%, transparent 70%) !important;
-}
-
-/* Logo hover */
-.tl-company-logo:hover {
-  box-shadow: 0 0 20px  "rgba(190,18,60,$($args[0].Groups[1].Value))"  !important;
-  transform: scale(1.08) !important;
-}
-
-/* Nav CTA neon glow */
-.nav-links a.nav-cta {
-  box-shadow: 0 4px 16px  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-}
-.nav-links a.nav-cta:hover {
-  box-shadow: 0 4px 24px  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-}
-
-/* Input fields in contact form */
-.contact-form input,
-.contact-form textarea,
-.contact-form select {
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  color: var(--text-primary) !important;
-}
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #2563EB !important;
-  box-shadow: 0 0 0 3px  "rgba(37,99,235,$($args[0].Groups[1].Value))" , 0 0 20px  "rgba(37,99,235,$($args[0].Groups[1].Value))"  !important;
-  outline: none !important;
-}
 
 
 
