@@ -39,14 +39,10 @@
       </ul>
       
       <div style="display: flex; align-items: center; gap: 16px;">
-        <button id="theme-toggle" class="stitch-toggle" aria-label="Toggle Antigravity Theme">
-          <svg class="stitch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Stylized Stitch Experiment 626 / MCP fusion icon -->
-            <path d="M12 2v20M2 12h20" class="mcp-core" opacity="0.2"/>
-            <circle cx="12" cy="12" r="6" class="stitch-eye"/>
-            <path d="M8 8l8 8M16 8l-8 8" class="mcp-grid"/>
-            <circle cx="12" cy="12" r="2" fill="currentColor"/>
-          </svg>
+        <button id="theme-toggle" class="theme-slider" aria-label="Toggle Theme">
+          <span class="ts-text ts-dark">DARK</span>
+          <div class="ts-pill"><div class="ts-knob"></div></div>
+          <span class="ts-text ts-light">LIGHT</span>
         </button>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
           <span></span><span></span><span></span>
@@ -106,12 +102,6 @@
         <div class="image-ring image-ring-mid"></div>
         <div class="image-wrapper">
           <img src="assets/img/profile.jpg" alt="Shadman Ahsan" class="profile-photo" id="profile-photo" />
-        </div>
-        
-        <!-- Futuristic Telemetry Status Panel -->
-        <div class="status-panel">
-          <div class="sp-header">ANTIGRAVITY: <span class="sp-pulse">ENGAGED</span></div>
-          <div class="sp-detail" id="sp-lift">[STATUS: ACTIVE - <span id="sp-val">85</span>% LIFT]</div>
         </div>
         <div class="image-badge ib-1">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>

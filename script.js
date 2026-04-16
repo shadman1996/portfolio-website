@@ -299,23 +299,16 @@ document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListene
 const themeToggle = document.getElementById('theme-toggle');
 
 function setTheme(isLight) {
-  const pulseSpan = document.querySelector('.sp-pulse');
-  const detailDiv = document.querySelector('.sp-detail');
-
   if (isLight) {
     document.documentElement.classList.add('light-mode');
     document.body.classList.add('light-mode');
     document.body.classList.remove('dark-mode');
     localStorage.setItem('theme', 'light');
-    if (pulseSpan) pulseSpan.innerText = 'NOMINAL';
-    if (detailDiv) detailDiv.innerText = '[SYSTEM STABILIZED]';
   } else {
     document.documentElement.classList.remove('light-mode');
     document.body.classList.remove('light-mode');
     document.body.classList.add('dark-mode');
     localStorage.setItem('theme', 'dark');
-    if (pulseSpan) pulseSpan.innerText = 'ENGAGED';
-    if (detailDiv) detailDiv.innerHTML = '[STATUS: ACTIVE - <span id="sp-val">85</span>% LIFT]';
   }
 }
 

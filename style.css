@@ -1,4 +1,4 @@
-/* ===== RESET & BASE ===== */
+﻿/* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -211,39 +211,66 @@ img { max-width: 100%; display: block; }
 }
 .nav-links a.nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
 
-/* Stitch Theme Toggle */
-.stitch-toggle {
+/* Theme Slider Toggle */
+.theme-slider {
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  border: none;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
   cursor: pointer;
-  color: #BE123C; /* Fiery Red for Dark Mode */
+  z-index: 1001;
+  padding: 0;
+  outline: none;
+}
+.ts-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+.theme-slider:hover .ts-text {
+  color: var(--text-primary);
+}
+.ts-pill {
+  width: 44px;
+  height: 24px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
+  position: relative;
   transition: all 0.3s ease;
-  z-index: 1001; /* Above mobile menu overlay */
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
 }
-.stitch-toggle:hover {
-  background: rgba(190, 18, 60, 0.1);
-  border-color: #BE123C;
-  transform: rotate(15deg);
-  box-shadow: 0 0 12px rgba(190, 18, 60, 0.3);
+.ts-knob {
+  width: 18px;
+  height: 18px;
+  background: #BE123C;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(190, 18, 60, 0.5);
 }
-.stitch-toggle .stitch-icon {
-  width: 20px;
-  height: 20px;
+
+/* Light Mode Slider State */
+body.light-mode .ts-pill {
+  background: rgba(30, 41, 59, 0.1);
+  border-color: rgba(30, 41, 59, 0.2);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
 }
-body.light-mode .stitch-toggle {
-  color: #3B82F6; /* Digital Blue for Light Mode */
-  border-color: rgba(59, 130, 246, 0.2);
+body.light-mode .ts-knob {
+  background: #3B82F6;
+  left: 22px; /* slides to right */
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
 }
-body.light-mode .stitch-toggle:hover {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: #3B82F6;
-  box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+body.light-mode .ts-light {
+  color: #3B82F6;
+}
+body:not(.light-mode) .ts-dark {
+  color: #BE123C;
 }
 .hamburger {
   display: none;
@@ -407,13 +434,13 @@ body.light-mode .stitch-toggle:hover {
   border-radius: 50%;
   animation: spin-slow 20s linear infinite;
 }
-/* Outer ring — dashed cyan */
+/* Outer ring â€” dashed cyan */
 .image-ring-outer {
   width: 460px; height: 460px;
   border: 1.5px dashed rgba(37,99,235,0.4);
   box-shadow: 0 0 20px rgba(37,99,235,0.2), inset 0 0 20px rgba(37,99,235,0.1);
 }
-/* Mid ring — solid crimson */
+/* Mid ring â€” solid crimson */
 .image-ring-mid {
   width: 385px; height: 385px;
   border: 1px solid rgba(190,18,60,0.5);
@@ -425,7 +452,7 @@ body.light-mode .stitch-toggle:hover {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
-/* Profile photo wrapper — navy/blue glowing frame */
+/* Profile photo wrapper â€” navy/blue glowing frame */
 .image-wrapper {
   width: 320px;
   height: 320px;
@@ -450,7 +477,7 @@ body.light-mode .stitch-toggle:hover {
   filter: contrast(1.05) saturate(1.1);
   mix-blend-mode: normal;
 }
-/* 6 orbital badges — each placed on the outer ring circumference, rotating */
+/* 6 orbital badges â€” each placed on the outer ring circumference, rotating */
 .image-badge {
   position: absolute;
   display: flex;
@@ -640,7 +667,7 @@ body.light-mode .stitch-toggle:hover {
   line-height: 1.6;
 }
 .tl-bullets li::before {
-  content: '→';
+  content: 'â†’';
   position: absolute;
   left: 0;
   top: 6px;
@@ -1240,57 +1267,3 @@ body.light-mode .stitch-toggle:hover {
 
 
 
-/* Futuristic Telemetry Status Panel (Antigravity Dashboard) */
-.status-panel {
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(11,14,20,0.9);
-  border: 1px solid rgba(37,99,235,0.4);
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-align: center;
-  z-index: 10;
-  box-shadow: 0 0 15px rgba(37,99,235,0.3), inset 0 0 8px rgba(190,18,60,0.2);
-  backdrop-filter: blur(8px);
-  width: max-content;
-  transition: all 0.5s ease;
-}
-.sp-header {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  margin-bottom: 4px;
-}
-.sp-pulse {
-  color: #BE123C;
-  animation: pulse-red 1.5s infinite;
-}
-.sp-detail {
-  font-family: monospace;
-  font-size: 0.85rem;
-  color: #3B82F6;
-  text-shadow: 0 0 5px #3B82F6;
-}
-@keyframes pulse-red {
-  0%, 100% { opacity: 1; text-shadow: 0 0 8px #BE123C; }
-  50% { opacity: 0.4; text-shadow: none; }
-}
-
-/* Light Mode Changes for Telemetry */
-body.light-mode .status-panel {
-  background: rgba(255,255,255,0.95);
-  border-color: rgba(59, 130, 246, 0.3);
-  box-shadow: 0 4px 15px rgba(30, 41, 59, 0.1);
-}
-body.light-mode .sp-pulse {
-  color: #10B981; /* Safe Green */
-  animation: none;
-}
-body.light-mode .sp-detail {
-  color: #1E293B;
-  text-shadow: none;
-  font-weight: 600;
-}
