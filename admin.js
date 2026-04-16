@@ -63,7 +63,7 @@
       z-index:999999;backdrop-filter:blur(12px);
     `);
     const box = mkEl('div', `
-      background:#0a0610;border:1px solid rgba(139,92,246,0.3);
+      background:#0a0610;border:1px solid rgba(0,242,255,0.2);
       border-radius:16px;padding:40px;text-align:center;
       box-shadow:0 40px 80px rgba(0,0,0,0.5);min-width:320px;
     `);
@@ -72,7 +72,7 @@
       <h2 style="color:#f0f4f8;font-family:Inter,sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:4px;">Admin Mode</h2>
       <p style="color:#94a3b8;font-size:0.85rem;margin-bottom:24px;font-family:Inter,sans-serif;">Enter your PIN to enable inline editing</p>
       <input id="_pin_input" type="password" maxlength="6" placeholder="â— â— â— â—"
-        style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid rgba(139,92,246,0.3);
+        style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid rgba(0,242,255,0.2);
                background:rgba(255,255,255,0.05);color:#f0f4f8;font-size:1.2rem;
                text-align:center;letter-spacing:0.3em;outline:none;font-family:Inter,sans-serif;
                margin-bottom:16px;box-sizing:border-box;" />
@@ -99,7 +99,7 @@
         err.style.display = 'block';
         inp.value = '';
         inp.style.border = '1px solid #f87171';
-        setTimeout(() => { inp.style.border = '1px solid rgba(139,92,246,0.3)'; err.style.display='none'; }, 2000);
+        setTimeout(() => { inp.style.border = '1px solid rgba(0,242,255,0.2)'; err.style.display='none'; }, 2000);
       }
     }
 
@@ -117,7 +117,7 @@
     adminBar = mkEl('div', `
       position:fixed;top:0;left:0;right:0;
       background:linear-gradient(135deg,#0a0610,#130d1e);
-      border-bottom:1px solid rgba(139,92,246,0.4);
+      border-bottom:1px solid rgba(0,242,255,0.3);
       display:flex;align-items:center;justify-content:space-between;
       padding:0 24px;height:52px;z-index:99999;
       box-shadow:0 4px 24px rgba(0,0,0,0.4);
@@ -158,20 +158,20 @@
         if (el.id === 'typewriter' || el.closest('#typewriter') || el.classList.contains('typewriter-cursor')) return;
         el.contentEditable = 'true';
         el.dataset.original = el.innerHTML;
-        el.style.outline = '2px dashed rgba(139,92,246,0.35)';
+        el.style.outline = '2px dashed rgba(0,242,255,0.25)';
         el.style.borderRadius = '4px';
         el.style.minHeight = '1em';
         el.style.cursor = 'text';
         el.style.transition = 'outline 0.2s, background 0.2s';
 
         el.addEventListener('focus', () => {
-          el.style.outline = '2px solid #8b5cf6';
-          el.style.background = 'rgba(139,92,246,0.08)';
+          el.style.outline = '2px solid #00F2FF';
+          el.style.background = 'rgba(0,242,255,0.06)';
           activeEl = el;
           positionToolbar(el);
         });
         el.addEventListener('blur', () => {
-          el.style.outline = '2px dashed rgba(139,92,246,0.35)';
+          el.style.outline = '2px dashed rgba(0,242,255,0.25)';
           el.style.background = '';
         });
         el.addEventListener('mouseenter', () => {
@@ -217,7 +217,7 @@
   // â”€â”€â”€ Floating Toolbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function createToolbar() {
     toolbar = mkEl('div', `
-      position:fixed;background:#0d1b2a;border:1px solid rgba(139,92,246,0.3);
+      position:fixed;background:#0d1b2a;border:1px solid rgba(0,242,255,0.2);
       border-radius:10px;padding:6px 10px;display:none;align-items:center;gap:4px;
       z-index:999999;box-shadow:0 8px 32px rgba(0,0,0,0.4);
       font-family:Inter,sans-serif;white-space:nowrap;
@@ -230,7 +230,7 @@
       <button data-action="bigger"    title="Larger text"  style="${tbBtn()}">A+</button>
       <button data-action="smaller"   title="Smaller text" style="${tbBtn()}">Aâˆ’</button>
       <div style="width:1px;height:20px;background:rgba(255,255,255,0.1);margin:0 4px;"></div>
-      <button data-action="color-accent" title="Accent Blue" style="${tbBtn()};color:#8b5cf6;">â– </button>
+      <button data-action="color-accent" title="Accent Blue" style="${tbBtn()};color:#00F2FF;">â– </button>
       <button data-action="color-white"  title="White text"  style="${tbBtn()};color:#f0f4f8;">â– </button>
       <button data-action="color-muted"  title="Muted text"  style="${tbBtn()};color:#94a3b8;">â– </button>
       <div style="width:1px;height:20px;background:rgba(255,255,255,0.1);margin:0 4px;"></div>
@@ -254,7 +254,7 @@
       if (activeEl) { const s = parseFloat(getComputedStyle(activeEl).fontSize); if (s > 10) activeEl.style.fontSize = (s - 1) + 'px'; }
     });
     toolbar.querySelector('[data-action="color-accent"]').addEventListener('mousedown', (e) => {
-      e.preventDefault(); document.execCommand('foreColor', false, '#8b5cf6');
+      e.preventDefault(); document.execCommand('foreColor', false, '#00F2FF');
     });
     toolbar.querySelector('[data-action="color-white"]').addEventListener('mousedown', (e) => {
       e.preventDefault(); document.execCommand('foreColor', false, '#f0f4f8');
@@ -401,4 +401,5 @@
   }
 
 })();
+
 
