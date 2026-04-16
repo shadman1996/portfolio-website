@@ -1,27 +1,27 @@
-/**
+﻿/**
  * ============================================================
- * PORTFOLIO ADMIN — INLINE CANVA-STYLE DOM EDITOR
+ * PORTFOLIO ADMIN â€” INLINE CANVA-STYLE DOM EDITOR
  * Activate: Ctrl + Shift + E
  * ============================================================
  */
 (function () {
   'use strict';
 
-  // ─── Config ───────────────────────────────────────────────
+  // â”€â”€â”€ Config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const ADMIN_PIN = '2021';  // Change this PIN
   const REPO     = 'shadman1996/portfolio-website';
   const BRANCH   = 'main';
   const FILE     = 'index.html';
   const GH_API   = `https://api.github.com/repos/${REPO}/contents/${FILE}`;
 
-  // ─── State ────────────────────────────────────────────────
+  // â”€â”€â”€ State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   let editMode    = false;
   let activeEl    = null;
   let toolbar     = null;
   let adminBar    = null;
   let pat         = localStorage.getItem('_admin_pat') || '';
 
-  // ─── Editable selectors ───────────────────────────────────
+  // â”€â”€â”€ Editable selectors â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const EDITABLE = [
     '.hero-title',
     '.hero-subtitle',
@@ -47,7 +47,7 @@
     '.edu-subtitle',
   ];
 
-  // ─── Attach Keyboard Shortcut ─────────────────────────────
+  // â”€â”€â”€ Attach Keyboard Shortcut â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.shiftKey && e.key === 'E') {
       e.preventDefault();
@@ -55,7 +55,7 @@
     }
   });
 
-  // ─── PIN Prompt ───────────────────────────────────────────
+  // â”€â”€â”€ PIN Prompt â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function promptPin() {
     const overlay = mkEl('div', `
       position:fixed;inset:0;background:rgba(6,20,35,0.92);
@@ -63,20 +63,20 @@
       z-index:999999;backdrop-filter:blur(12px);
     `);
     const box = mkEl('div', `
-      background:#0d1b2a;border:1px solid rgba(37,99,235,0.3);
+      background:#0a0610;border:1px solid rgba(139,92,246,0.3);
       border-radius:16px;padding:40px;text-align:center;
       box-shadow:0 40px 80px rgba(0,0,0,0.5);min-width:320px;
     `);
     box.innerHTML = `
-      <div style="font-size:2rem;margin-bottom:8px;">🔐</div>
+      <div style="font-size:2rem;margin-bottom:8px;">ðŸ”</div>
       <h2 style="color:#f0f4f8;font-family:Inter,sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:4px;">Admin Mode</h2>
       <p style="color:#94a3b8;font-size:0.85rem;margin-bottom:24px;font-family:Inter,sans-serif;">Enter your PIN to enable inline editing</p>
-      <input id="_pin_input" type="password" maxlength="6" placeholder="● ● ● ●"
-        style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid rgba(37,99,235,0.3);
+      <input id="_pin_input" type="password" maxlength="6" placeholder="â— â— â— â—"
+        style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid rgba(139,92,246,0.3);
                background:rgba(255,255,255,0.05);color:#f0f4f8;font-size:1.2rem;
                text-align:center;letter-spacing:0.3em;outline:none;font-family:Inter,sans-serif;
                margin-bottom:16px;box-sizing:border-box;" />
-      <button id="_pin_ok" style="width:100%;padding:12px;background:linear-gradient(135deg,#1d4ed8,#2563eb);
+      <button id="_pin_ok" style="width:100%;padding:12px;background:linear-gradient(135deg,#7c3aed,#e879f9);
         color:#fff;border:none;border-radius:10px;font-size:0.95rem;font-weight:600;
         cursor:pointer;font-family:Inter,sans-serif;">Unlock Editor</button>
       <div id="_pin_err" style="color:#f87171;font-size:0.8rem;margin-top:10px;display:none;font-family:Inter,sans-serif;">Incorrect PIN. Try again.</div>
@@ -99,7 +99,7 @@
         err.style.display = 'block';
         inp.value = '';
         inp.style.border = '1px solid #f87171';
-        setTimeout(() => { inp.style.border = '1px solid rgba(37,99,235,0.3)'; err.style.display='none'; }, 2000);
+        setTimeout(() => { inp.style.border = '1px solid rgba(139,92,246,0.3)'; err.style.display='none'; }, 2000);
       }
     }
 
@@ -108,16 +108,16 @@
     overlay.addEventListener('click', (e) => { if (e.target === overlay) document.body.removeChild(overlay); });
   }
 
-  // ─── Activate Edit Mode ───────────────────────────────────
+  // â”€â”€â”€ Activate Edit Mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function activate() {
     editMode = true;
-    document.body.style.outline = '3px solid rgba(37,99,235,0.5)';
+    document.body.style.outline = '3px solid rgba(232,121,249,0.5)';
 
     // Create top admin bar
     adminBar = mkEl('div', `
       position:fixed;top:0;left:0;right:0;
-      background:linear-gradient(135deg,#0d1b2a,#1e2b3b);
-      border-bottom:1px solid rgba(37,99,235,0.4);
+      background:linear-gradient(135deg,#0a0610,#130d1e);
+      border-bottom:1px solid rgba(139,92,246,0.4);
       display:flex;align-items:center;justify-content:space-between;
       padding:0 24px;height:52px;z-index:99999;
       box-shadow:0 4px 24px rgba(0,0,0,0.4);
@@ -125,21 +125,21 @@
     `);
     adminBar.innerHTML = `
       <div style="display:flex;align-items:center;gap:12px;">
-        <span style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:4px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;">EDIT MODE</span>
-        <span style="color:#94a3b8;font-size:0.82rem;">Click any text to edit • Ctrl+Shift+E to exit</span>
+        <span style="background:linear-gradient(135deg,#7c3aed,#e879f9);color:#fff;padding:4px 10px;border-radius:6px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;">EDIT MODE</span>
+        <span style="color:#94a3b8;font-size:0.82rem;">Click any text to edit â€¢ Ctrl+Shift+E to exit</span>
       </div>
       <div style="display:flex;gap:10px;align-items:center;">
         <button id="_admin_pat_btn" style="padding:7px 14px;background:rgba(255,255,255,0.07);color:#94a3b8;
           border:1px solid rgba(255,255,255,0.1);border-radius:8px;font-size:0.8rem;cursor:pointer;font-family:Inter,sans-serif;">
-          🔑 GitHub Token
+          ðŸ”‘ GitHub Token
         </button>
-        <button id="_admin_save" style="padding:7px 16px;background:linear-gradient(135deg,#1d4ed8,#2563eb);
+        <button id="_admin_save" style="padding:7px 16px;background:linear-gradient(135deg,#7c3aed,#e879f9);
           color:#fff;border:none;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;">
-          ⬆ Publish to GitHub
+          â¬† Publish to GitHub
         </button>
         <button id="_admin_exit" style="padding:7px 14px;background:rgba(248,113,113,0.15);color:#f87171;
           border:1px solid rgba(248,113,113,0.3);border-radius:8px;font-size:0.8rem;cursor:pointer;font-family:Inter,sans-serif;">
-          ✕ Exit
+          âœ• Exit
         </button>
       </div>
     `;
@@ -158,20 +158,20 @@
         if (el.id === 'typewriter' || el.closest('#typewriter') || el.classList.contains('typewriter-cursor')) return;
         el.contentEditable = 'true';
         el.dataset.original = el.innerHTML;
-        el.style.outline = '2px dashed rgba(37,99,235,0.35)';
+        el.style.outline = '2px dashed rgba(139,92,246,0.35)';
         el.style.borderRadius = '4px';
         el.style.minHeight = '1em';
         el.style.cursor = 'text';
         el.style.transition = 'outline 0.2s, background 0.2s';
 
         el.addEventListener('focus', () => {
-          el.style.outline = '2px solid #2563eb';
-          el.style.background = 'rgba(37,99,235,0.08)';
+          el.style.outline = '2px solid #8b5cf6';
+          el.style.background = 'rgba(139,92,246,0.08)';
           activeEl = el;
           positionToolbar(el);
         });
         el.addEventListener('blur', () => {
-          el.style.outline = '2px dashed rgba(37,99,235,0.35)';
+          el.style.outline = '2px dashed rgba(139,92,246,0.35)';
           el.style.background = '';
         });
         el.addEventListener('mouseenter', () => {
@@ -188,10 +188,10 @@
     createToolbar();
     document.addEventListener('selectionchange', onSelectionChange);
 
-    showToast('✏️ Edit mode active — click any text to start editing!');
+    showToast('âœï¸ Edit mode active â€” click any text to start editing!');
   }
 
-  // ─── Deactivate Edit Mode ─────────────────────────────────
+  // â”€â”€â”€ Deactivate Edit Mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function deactivate() {
     editMode = false;
     document.body.style.outline = '';
@@ -211,13 +211,13 @@
     });
 
     document.removeEventListener('selectionchange', onSelectionChange);
-    showToast('👁️ Edit mode off');
+    showToast('ðŸ‘ï¸ Edit mode off');
   }
 
-  // ─── Floating Toolbar ─────────────────────────────────────
+  // â”€â”€â”€ Floating Toolbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function createToolbar() {
     toolbar = mkEl('div', `
-      position:fixed;background:#0d1b2a;border:1px solid rgba(37,99,235,0.3);
+      position:fixed;background:#0d1b2a;border:1px solid rgba(139,92,246,0.3);
       border-radius:10px;padding:6px 10px;display:none;align-items:center;gap:4px;
       z-index:999999;box-shadow:0 8px 32px rgba(0,0,0,0.4);
       font-family:Inter,sans-serif;white-space:nowrap;
@@ -228,13 +228,13 @@
       <button data-cmd="underline"    title="Underline"    style="${tbBtn()}"><u>U</u></button>
       <div style="width:1px;height:20px;background:rgba(255,255,255,0.1);margin:0 4px;"></div>
       <button data-action="bigger"    title="Larger text"  style="${tbBtn()}">A+</button>
-      <button data-action="smaller"   title="Smaller text" style="${tbBtn()}">A−</button>
+      <button data-action="smaller"   title="Smaller text" style="${tbBtn()}">Aâˆ’</button>
       <div style="width:1px;height:20px;background:rgba(255,255,255,0.1);margin:0 4px;"></div>
-      <button data-action="color-accent" title="Accent Blue" style="${tbBtn()};color:#2563eb;">■</button>
-      <button data-action="color-white"  title="White text"  style="${tbBtn()};color:#f0f4f8;">■</button>
-      <button data-action="color-muted"  title="Muted text"  style="${tbBtn()};color:#94a3b8;">■</button>
+      <button data-action="color-accent" title="Accent Blue" style="${tbBtn()};color:#8b5cf6;">â– </button>
+      <button data-action="color-white"  title="White text"  style="${tbBtn()};color:#f0f4f8;">â– </button>
+      <button data-action="color-muted"  title="Muted text"  style="${tbBtn()};color:#94a3b8;">â– </button>
       <div style="width:1px;height:20px;background:rgba(255,255,255,0.1);margin:0 4px;"></div>
-      <button data-action="undo"      title="Undo"         style="${tbBtn()}">↩</button>
+      <button data-action="undo"      title="Undo"         style="${tbBtn()}">â†©</button>
     `;
     document.body.appendChild(toolbar);
 
@@ -254,7 +254,7 @@
       if (activeEl) { const s = parseFloat(getComputedStyle(activeEl).fontSize); if (s > 10) activeEl.style.fontSize = (s - 1) + 'px'; }
     });
     toolbar.querySelector('[data-action="color-accent"]').addEventListener('mousedown', (e) => {
-      e.preventDefault(); document.execCommand('foreColor', false, '#2563eb');
+      e.preventDefault(); document.execCommand('foreColor', false, '#8b5cf6');
     });
     toolbar.querySelector('[data-action="color-white"]').addEventListener('mousedown', (e) => {
       e.preventDefault(); document.execCommand('foreColor', false, '#f0f4f8');
@@ -297,23 +297,23 @@
     }
   });
 
-  // ─── GitHub PAT prompt ────────────────────────────────────
+  // â”€â”€â”€ GitHub PAT prompt â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function promptPAT() {
     const current = localStorage.getItem('_admin_pat') || '';
     const val = prompt('Paste your GitHub Personal Access Token (repo write access).\nIt will be saved locally in your browser only.', current);
     if (val !== null) {
       pat = val.trim();
       localStorage.setItem('_admin_pat', pat);
-      showToast('✅ GitHub token saved');
+      showToast('âœ… GitHub token saved');
     }
   }
 
-  // ─── Publish to GitHub ────────────────────────────────────
+  // â”€â”€â”€ Publish to GitHub â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   async function publishToGitHub() {
     if (!pat) { promptPAT(); return; }
 
     const btn = adminBar.querySelector('#_admin_save');
-    btn.textContent = '⏳ Publishing...';
+    btn.textContent = 'â³ Publishing...';
     btn.disabled = true;
 
     try {
@@ -357,19 +357,19 @@
         throw new Error(err.message || 'GitHub API error');
       }
 
-      showToast('🚀 Published! Site will update in ~60 seconds.', 'success');
+      showToast('ðŸš€ Published! Site will update in ~60 seconds.', 'success');
     } catch (err) {
-      showToast('❌ ' + err.message, 'error');
+      showToast('âŒ ' + err.message, 'error');
     } finally {
-      btn.textContent = '⬆ Publish to GitHub';
+      btn.textContent = 'â¬† Publish to GitHub';
       btn.disabled = false;
     }
   }
 
-  // ─── Toast Notification ───────────────────────────────────
+  // â”€â”€â”€ Toast Notification â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function showToast(msg, type = 'info') {
     const colors = {
-      info:    'rgba(37,99,235,0.9)',
+      info:    'rgba(139,92,246,0.9)',
       success: 'rgba(34,197,94,0.9)',
       error:   'rgba(239,68,68,0.9)'
     };
@@ -393,7 +393,7 @@
     setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity 0.4s'; setTimeout(() => t.remove(), 400); }, 3500);
   }
 
-  // ─── Helper ───────────────────────────────────────────────
+  // â”€â”€â”€ Helper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function mkEl(tag, css) {
     const el = document.createElement(tag);
     el.style.cssText = css;
@@ -401,3 +401,4 @@
   }
 
 })();
+

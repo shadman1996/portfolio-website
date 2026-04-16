@@ -72,20 +72,50 @@ tabs.forEach(tab => {
   });
 });
 
-// ===== CONTACT FORM (mailto fallback) =====
-function handleForm(e) {
+// ===== CONTACT FORM — Direct submit via Formsubmit.co (no mailto) =====
+async function handleForm(e) {
   e.preventDefault();
-  const name = document.getElementById('cf-name').value;
-  const email = document.getElementById('cf-email').value;
-  const subject = document.getElementById('cf-subject').value || 'Portfolio Contact';
-  const message = document.getElementById('cf-message').value;
+  const btn      = document.getElementById('cf-submit');
   const feedback = document.getElementById('form-feedback');
+  const form     = document.getElementById('contact-form');
 
-  const mailto = `mailto:shadman_ahsan@yahoo.com?subject=${encodeURIComponent(subject + ' — from ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message)}`;
-  window.location.href = mailto;
+  // Show loading state
+  btn.textContent = 'Sending...';
+  btn.disabled    = true;
+  feedback.style.color = '';
+  feedback.textContent = '';
 
-  feedback.textContent = '✅ Opening your email client... Thank you!';
-  setTimeout(() => feedback.textContent = '', 5000);
+  const data = {
+    name:    document.getElementById('cf-name').value,
+    email:   document.getElementById('cf-email').value,
+    subject: document.getElementById('cf-subject').value || 'Portfolio Contact',
+    message: document.getElementById('cf-message').value,
+    _captcha: 'false',
+    _template: 'box'
+  };
+
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/shadman_ahsan@yahoo.com', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (json.success === 'true' || json.success === true) {
+      feedback.style.color = '#34d399';
+      feedback.textContent = '✅ Message sent! Shadman will get back to you shortly.';
+      form.reset();
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch (err) {
+    feedback.style.color = '#f87171';
+    feedback.textContent = '❌ Something went wrong. Please email directly: shadman_ahsan@yahoo.com';
+  } finally {
+    btn.textContent = 'Send Message →';
+    btn.disabled    = false;
+    setTimeout(() => feedback.textContent = '', 7000);
+  }
 }
 
 // ===== SMOOTH HERO PARALLAX =====
