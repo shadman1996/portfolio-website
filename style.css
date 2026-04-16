@@ -352,17 +352,17 @@ img { max-width: 100%; display: block; }
   border-radius: 50%;
   animation: spin-slow 20s linear infinite;
 }
-/* Outer ring Ã¢â‚¬â€ dashed cyan */
+/* Outer ring — dashed cyan */
 .image-ring-outer {
   width: 460px; height: 460px;
-  border: 1.5px dashed  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
-  box-shadow: 0 0 20px  "rgba(37,99,235,$($args[0].Groups[1].Value))" , inset 0 0 20px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  border: 1.5px dashed rgba(37,99,235,0.4);
+  box-shadow: 0 0 20px rgba(37,99,235,0.2), inset 0 0 20px rgba(37,99,235,0.1);
 }
-/* Mid ring Ã¢â‚¬â€ solid electric purple */
+/* Mid ring — solid crimson */
 .image-ring-mid {
   width: 385px; height: 385px;
-  border: 1px solid  "rgba(190,18,60,$($args[0].Groups[1].Value))" ;
-  box-shadow: 0 0 16px  "rgba(190,18,60,$($args[0].Groups[1].Value))" ;
+  border: 1px solid rgba(190,18,60,0.5);
+  box-shadow: 0 0 16px rgba(190,18,60,0.3);
   animation-direction: reverse;
   animation-duration: 14s;
 }
@@ -370,7 +370,7 @@ img { max-width: 100%; display: block; }
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
-/* Profile photo wrapper Ã¢â‚¬â€ neon cyan glowing frame */
+/* Profile photo wrapper — navy/blue glowing frame */
 .image-wrapper {
   width: 320px;
   height: 320px;
@@ -378,14 +378,14 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   border: 2px solid #2563EB;
   box-shadow:
-    0 0 0 6px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ,
-    0 0 40px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ,
-    0 0 80px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ,
-    0 0 120px  "rgba(190,18,60,$($args[0].Groups[1].Value))" ,
-    inset 0 0 30px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+    0 0 0 6px rgba(37,99,235,0.1),
+    0 0 40px rgba(37,99,235,0.2),
+    0 0 80px rgba(37,99,235,0.3),
+    0 0 120px rgba(190,18,60,0.15),
+    inset 0 0 30px rgba(37,99,235,0.5);
   position: relative;
   z-index: 2;
-  background: radial-gradient(circle at 30% 30%,  "rgba(37,99,235,$($args[0].Groups[1].Value))" , transparent 70%);
+  background: radial-gradient(circle at 30% 30%, rgba(37,99,235,0.8), transparent 70%);
 }
 .profile-photo {
   width: 100%;
@@ -395,7 +395,7 @@ img { max-width: 100%; display: block; }
   filter: contrast(1.05) saturate(1.1);
   mix-blend-mode: normal;
 }
-/* 6 orbital badges ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â each placed on the outer ring circumference, rotating */
+/* 6 orbital badges — each placed on the outer ring circumference, rotating */
 .image-badge {
   position: absolute;
   display: flex;
@@ -403,7 +403,7 @@ img { max-width: 100%; display: block; }
   gap: 8px;
   padding: 8px 14px;
   background: rgba(11,14,20,0.88);
-  border: 1px solid  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  border: 1px solid rgba(37,99,235,0.6);
   border-radius: 50px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -412,8 +412,8 @@ img { max-width: 100%; display: block; }
   color: #2563EB;
   white-space: nowrap;
   animation: orbit-badge 18s linear infinite;
-  box-shadow: 0 0 12px  "rgba(37,99,235,$($args[0].Groups[1].Value))" , inset 0 1px 0 rgba(255,255,255,0.06);
-  text-shadow: 0 0 8px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  box-shadow: 0 0 12px rgba(37,99,235,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+  text-shadow: 0 0 8px rgba(37,99,235,0.4);
 }
 .ib-1 { animation-delay:   0s; }
 .ib-2 { animation-delay:  -3s; }
@@ -1090,12 +1090,19 @@ img { max-width: 100%; display: block; }
   .nav-links.open { display: flex; }
   .nav-links a { font-size: 1.2rem; }
 
-  /* Hero */
+  /* Hero & Orbit Animation Mobile Compression */
   .hero-container { grid-template-columns: 1fr; gap: 40px; }
-  .hero-image { order: -1; transform: scale(0.75); transform-origin: center; margin: -40px 0; }
+  .hero-image { order: -1; transform: scale(0.85); transform-origin: center; margin: -20px 0; }
   .image-ring-outer { width: 300px; height: 300px; }
   .image-ring-mid { width: 240px; height: 240px; }
   .image-wrapper { width: 220px; height: 220px; }
+  .image-badge { animation-name: orbit-badge-mobile !important; }
+  
+  @keyframes orbit-badge-mobile {
+    0%   { transform: rotate(0deg)   translateX(150px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+  }
+
   .ib-1 { top: 10px; right: 0; }
   .ib-2 { bottom: 10px; left: 0; }
   .hero-stats { gap: 16px; }
