@@ -1,4 +1,4 @@
-﻿/* ===== RESET & BASE ===== */
+/* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -516,6 +516,16 @@ body:not(.light-mode) .ts-dark {
   animation: orbit-badge 18s linear infinite;
   box-shadow: 0 0 12px rgba(37,99,235,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
   text-shadow: 0 0 8px rgba(37,99,235,0.4);
+}
+body.light-mode .image-badge {
+  background: #ffffff;
+  color: #1E293B; /* Navy for better readability */
+  border-color: rgba(37,99,235,0.25);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  text-shadow: none;
+}
+body.light-mode .image-badge svg {
+  color: var(--accent); /* Blue icons */
 }
 .ib-1 { animation-delay:   0s; }
 .ib-2 { animation-delay:  -3s; }
