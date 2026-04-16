@@ -170,7 +170,16 @@ if(cursorGlow) {
 }
 
 // 3. Typewriter Effect
-const roles = ["IT & MIS Specialist", "Cybersecurity MS Candidate", "Full Stack Developer", "Data Architect", "Ethical Hacker", "Graduate Assistant at Technology Resource Center"];
+const roles = [
+  "IT & MIS Specialist 💻",
+  "Cybersecurity MS Candidate 🛡️",
+  "Full Stack Developer 🚀",
+  "Data Infrastructure Architect 🏗️",
+  "Ethical Hacker 🔐",
+  "Strategic Gamer 🎮",
+  "Musical Beat Explorer 🎧",
+  "Cinematic Storyteller 🎬"
+];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -239,25 +248,37 @@ function playTourSegment(index) {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       const msg = new SpeechSynthesisUtterance(segment.text);
-      msg.rate = 0.95;
-      msg.pitch = 1.05; // Slightly higher pitch for clarity
       
-      // Auto-select the most natural English voice available
-      const voices = window.speechSynthesis.getVoices();
-      let bestVoice = voices.find(v => v.name.includes('Google US English') || v.name.includes('Google UK English Male')) || 
-                      voices.find(v => v.name.includes('Natural') || v.name.includes('Premium')) ||
-                      voices.find(v => v.name.includes('Mark') || v.name.includes('Samantha')) ||
-                      voices.find(v => v.lang === 'en-US' || v.lang === 'en-GB');
-                      
-      if (bestVoice) msg.voice = bestVoice;
+      const setVoice = () => {
+        const voices = window.speechSynthesis.getVoices();
+        // Priority: Google Neural > Microsoft Natural > Premium > Standard
+        let bestVoice = voices.find(v => v.name.includes('Google US English') || v.name.includes('Google UK English Male')) || 
+                        voices.find(v => v.name.includes('Natural')) ||
+                        voices.find(v => v.name.includes('Premium')) ||
+                        voices.find(v => v.name.includes('Enhanced')) ||
+                        voices.find(v => v.name.includes('Samantha') || v.name.includes('Mark')) ||
+                        voices.find(v => v.lang === 'en-US' || v.lang === 'en-GB');
+                        
+        if (bestVoice) {
+          msg.voice = bestVoice;
+          // Natural voices often sound better at slightly slower rates
+          msg.rate = bestVoice.name.includes('Natural') ? 0.9 : 0.95;
+          msg.pitch = 1;
+        }
+        window.speechSynthesis.speak(msg);
+      };
+
+      if (window.speechSynthesis.getVoices().length > 0) {
+        setVoice();
+      } else {
+        window.speechSynthesis.onvoiceschanged = setVoice;
+      }
       
       msg.onend = () => {
         targetEl.style.boxShadow = originalShadow;
         setTimeout(() => playTourSegment(index + 1), 800);
       };
       msg.onerror = () => playTourSegment(index + 1);
-      
-      window.speechSynthesis.speak(msg);
     } else {
       setTimeout(() => playTourSegment(index + 1), 4000);
     }
