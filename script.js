@@ -319,6 +319,6 @@ if (themeToggle) {
   });
   
   // Hydrate text based on FOUC pre-load state
-  const isPreloadedLight = document.documentElement.classList.contains('light-mode');
-  if (isPreloadedLight) setTheme(true);
+  const isPreloadedDark = document.documentElement.classList.contains('dark-mode');
+  setTheme(!isPreloadedDark);
 }

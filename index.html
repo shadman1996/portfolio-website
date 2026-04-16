@@ -14,13 +14,14 @@
   <link rel="stylesheet" href="style.css" />
   <!-- Preload Theme Preference to prevent FOUC -->
   <script>
-    if (localStorage.getItem('theme') === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark-mode');
+    } else {
       document.documentElement.classList.add('light-mode');
-      // Apply to body as well once it loads, but html prevents the FOUC
     }
   </script>
 </head>
-<body class="dark-mode">
+<body class="light-mode">
   <!-- UX Enhancements -->
   <div id="scroll-progress"></div>
   <div id="cursor-glow"></div>
