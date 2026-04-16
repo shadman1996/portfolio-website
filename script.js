@@ -73,50 +73,7 @@ tabs.forEach(tab => {
 });
 
 // ===== CONTACT FORM — Direct submit via Formsubmit.co (no mailto) =====
-async function handleForm(e) {
-  e.preventDefault();
-  const btn      = document.getElementById('cf-submit');
-  const feedback = document.getElementById('form-feedback');
-  const form     = document.getElementById('contact-form');
-
-  // Show loading state
-  btn.textContent = 'Sending...';
-  btn.disabled    = true;
-  feedback.style.color = '';
-  feedback.textContent = '';
-
-  const data = {
-    name:    document.getElementById('cf-name').value,
-    email:   document.getElementById('cf-email').value,
-    subject: document.getElementById('cf-subject').value || 'Portfolio Contact',
-    message: document.getElementById('cf-message').value,
-    _captcha: 'false',
-    _template: 'box'
-  };
-
-  try {
-    const res = await fetch('https://formsubmit.co/ajax/shadman_ahsan@yahoo.com', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body:    JSON.stringify(data)
-    });
-    const json = await res.json();
-    if (json.success === 'true' || json.success === true) {
-      feedback.style.color = '#34d399';
-      feedback.textContent = '✅ Message sent! Shadman will get back to you shortly.';
-      form.reset();
-    } else {
-      throw new Error('Submission failed');
-    }
-  } catch (err) {
-    feedback.style.color = '#f87171';
-    feedback.textContent = '❌ Something went wrong. Please email directly: shadman_ahsan@yahoo.com';
-  } finally {
-    btn.textContent = 'Send Message →';
-    btn.disabled    = false;
-    setTimeout(() => feedback.textContent = '', 7000);
-  }
-}
+// Form handling shifted to native HTML Formsubmit integration.
 
 // ===== SMOOTH HERO PARALLAX =====
 window.addEventListener('scroll', () => {
