@@ -246,25 +246,83 @@ function typeWriter() {
 }
 document.addEventListener('DOMContentLoaded', typeWriter);
 
-// 4. Voice Tour feature
+// 4. Guided Audio Tour
+const tourBtn = document.getElementById('start-tour-btn');
 const profilePhoto = document.getElementById('profile-photo');
-if (profilePhoto) {
-  profilePhoto.style.cursor = 'pointer';
-  profilePhoto.addEventListener('click', () => {
-    const wrapper = profilePhoto.closest('.image-wrapper');
-    if (wrapper) wrapper.style.boxShadow = '0 0 100px #2563EB, inset 0 0 50px #2563EB';
+let isTourRunning = false;
+
+const tourSegments = [
+  { id: 'home', text: "Hello, and welcome to my professional portfolio. I am Shadman Ahsan, an IT and M.I.S Specialist, and Ethical Hacker." },
+  { id: 'about', text: "I have over five years of experience architecting secure IT infrastructures, and driving digital transformation at leading organizations like Helen Keller International, and Sajida Foundation." },
+  { id: 'experience', text: "Throughout my career, I've designed enterprise systems, managed server administration, and implemented robust security frameworks. Security by design is my core philosophy." },
+  { id: 'education', text: "My academic journey includes a Master's degree in Cybersecurity from Southwest Minnesota State University, and an undergraduate degree in M.I.S from Independent University, Bangladesh." },
+  { id: 'skills', text: "My technical stack is comprehensive, ranging from Python and Java to Cloud platforms like AWS and Google Cloud, along with deep expertise in network security architecture." },
+  { id: 'projects', text: "My featured projects demonstrate my capability to build complex systems. This includes the Aegis cybersecurity platform, and Open-Claw Sentinel, an automated threat detection agent." },
+  { id: 'contact', text: "Thank you for joining this tour. If you are looking for a dedicated and innovative tech professional, feel free to reach out through my contact section below. Have a great day!" }
+];
+
+function playTourSegment(index) {
+  if (index >= tourSegments.length || !isTourRunning) {
+    isTourRunning = false;
+    if (tourBtn) tourBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>Audio Tour';
+    const wrapper = profilePhoto ? profilePhoto.closest('.image-wrapper') : null;
+    if (wrapper) wrapper.style.boxShadow = '';
+    return;
+  }
+  
+  const segment = tourSegments[index];
+  const targetEl = document.getElementById(segment.id);
+  
+  if (targetEl) {
+    targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const originalShadow = targetEl.style.boxShadow;
+    targetEl.style.boxShadow = '0 0 60px rgba(37,99,235,0.3)';
+    targetEl.style.transition = 'box-shadow 1s';
     
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
-      const msg = new SpeechSynthesisUtterance("Welcome to my digital portfolio. I am Shadman, an IT and M.I.S Specialist, and Ethical Hacker. Feel free to explore my background, projects, and certifications in the sections below.");
+      const msg = new SpeechSynthesisUtterance(segment.text);
       msg.rate = 0.95;
       
       msg.onend = () => {
-        if (wrapper) wrapper.style.boxShadow = '';
+        targetEl.style.boxShadow = originalShadow;
+        setTimeout(() => playTourSegment(index + 1), 800);
       };
+      msg.onerror = () => playTourSegment(index + 1);
+      
       window.speechSynthesis.speak(msg);
+    } else {
+      setTimeout(() => playTourSegment(index + 1), 4000);
     }
-  });
+  } else {
+    playTourSegment(index + 1);
+  }
+}
+
+function startAudioTour() {
+  if (!('speechSynthesis' in window)) return alert("Your browser doesn't support Text to Speech.");
+  if (isTourRunning) {
+    window.speechSynthesis.cancel();
+    isTourRunning = false;
+    if (tourBtn) tourBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>Audio Tour';
+    const wrapper = profilePhoto ? profilePhoto.closest('.image-wrapper') : null;
+    if (wrapper) wrapper.style.boxShadow = '';
+    return;
+  }
+  
+  isTourRunning = true;
+  if (tourBtn) tourBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>Stop Tour';
+  const wrapper = profilePhoto ? profilePhoto.closest('.image-wrapper') : null;
+  if (wrapper) wrapper.style.boxShadow = '0 0 100px #2563EB, inset 0 0 50px #2563EB';
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => playTourSegment(0), 1000);
+}
+
+if (tourBtn) tourBtn.addEventListener('click', startAudioTour);
+if (profilePhoto) {
+  profilePhoto.style.cursor = 'pointer';
+  profilePhoto.addEventListener('click', startAudioTour);
 }
 
 // Close mobile navbar on link click
