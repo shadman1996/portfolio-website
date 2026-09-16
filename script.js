@@ -107,7 +107,7 @@ if (subtitleEl) {
   const texts = [
     'IT & MIS Specialist · Cybersecurity MS Candidate · Full Stack Developer',
     'Supporting 200+ Users · 5+ Years Experience · Marshall, MN',
-    'Helen Keller Int\'l · Sajida Foundation · Accomium',
+    'SMSU · Helen Keller Int\'l · Sajida Foundation · Accomium',
   ];
   let textIdx = 0;
   setInterval(() => {
