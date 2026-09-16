@@ -218,12 +218,12 @@ const profilePhoto = document.getElementById('profile-photo');
 let isTourRunning = false;
 
 const tourSegments = [
-  { id: 'home', text: "Hello, and welcome to my professional portfolio. I am Shadman Ahsan, an IT and M.I.S Specialist, and Ethical Hacker." },
-  { id: 'about', text: "I have over five years of experience architecting secure IT infrastructures, and driving digital transformation at leading organizations like Helen Keller International, and Sajida Foundation." },
+  { id: 'home', text: "Hello, and welcome to my professional portfolio. I am Shadman Ahsan, an Enterprise Systems, DevOps, and Full-Stack Software Engineer." },
+  { id: 'about', text: "I have over five years of experience architecting secure IT infrastructures, and driving digital transformation at leading organizations like Southwest Minnesota State University, Helen Keller International, and Sajida Foundation." },
   { id: 'experience', text: "Throughout my career, I've designed enterprise systems, managed server administration, and implemented robust security frameworks. Security by design is my core philosophy." },
-  { id: 'education', text: "My academic journey includes a Master's degree in Cybersecurity from Southwest Minnesota State University, and an undergraduate degree in M.I.S from Independent University, Bangladesh." },
-  { id: 'skills', text: "My technical stack is comprehensive, ranging from Python and Java to Cloud platforms like AWS and Google Cloud, along with deep expertise in network security architecture." },
-  { id: 'projects', text: "My featured projects demonstrate my capability to build complex systems. This includes the Aegis cybersecurity platform, and Open-Claw Sentinel, an automated threat detection agent." },
+  { id: 'skills', text: "My technical stack is comprehensive, ranging from Python, TypeScript, and FastAPI to Cloud platforms like Kubernetes, Docker, and Google Cloud, along with deep expertise in network security architecture." },
+  { id: 'projects', text: "My featured projects demonstrate my capability to build complex systems. This includes enterprise platforms, full-stack applications, and automated cybersecurity tools." },
+  { id: 'education', text: "My academic background includes a Master of Science in Cybersecurity from Southwest Minnesota State University, and a Bachelor's degree in Computer Science and Engineering from Independent University, Bangladesh." },
   { id: 'contact', text: "Thank you for joining this tour. If you are looking for a dedicated and innovative tech professional, feel free to reach out through my contact section below. Have a great day!" }
 ];
 
