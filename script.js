@@ -212,24 +212,39 @@ function typeWriter() {
 }
 document.addEventListener('DOMContentLoaded', typeWriter);
 
-// 4. Guided Audio Tour
+// 4. Guided Audio Tour (Natural Human Male Voice)
 const tourBtn = document.getElementById('start-tour-btn');
 const profilePhoto = document.getElementById('profile-photo');
 let isTourRunning = false;
+let currentTourAudio = null;
 
 const tourSegments = [
-  { id: 'home', text: "Hello, and welcome to my professional portfolio. I am Shadman Ahsan, an Enterprise Systems, DevOps, and Full-Stack Software Engineer." },
-  { id: 'about', text: "I have over five years of experience architecting secure IT infrastructures, and driving digital transformation at leading organizations like Southwest Minnesota State University, Helen Keller International, and Sajida Foundation." },
-  { id: 'experience', text: "Throughout my career, I've designed enterprise systems, managed server administration, and implemented robust security frameworks. Security by design is my core philosophy." },
-  { id: 'skills', text: "My technical stack is comprehensive, ranging from Python, TypeScript, and FastAPI to Cloud platforms like Kubernetes, Docker, and Google Cloud, along with deep expertise in network security architecture." },
-  { id: 'projects', text: "My featured projects demonstrate my capability to build complex systems. This includes enterprise platforms, full-stack applications, and automated cybersecurity tools." },
-  { id: 'education', text: "My academic background includes a Master of Science in Cybersecurity from Southwest Minnesota State University, and a Bachelor's degree in Computer Science and Engineering from Independent University, Bangladesh." },
-  { id: 'contact', text: "Thank you for joining this tour. If you are looking for a dedicated and innovative tech professional, feel free to reach out through my contact section below. Have a great day!" }
+  { id: 'home', audio: 'assets/audio/tour_home.mp3', text: "Hello, and welcome to my professional portfolio. I am Shadman Ahsan, an Enterprise Systems, DevOps, and Full-Stack Software Engineer." },
+  { id: 'about', audio: 'assets/audio/tour_about.mp3', text: "I have over five years of experience architecting secure IT infrastructures and driving digital transformation at leading organizations like Southwest Minnesota State University, Helen Keller International, and Sajida Foundation." },
+  { id: 'experience', audio: 'assets/audio/tour_experience.mp3', text: "Throughout my career, I've designed enterprise systems, managed server administration, and implemented robust security frameworks. Security by design is my core philosophy." },
+  { id: 'skills', audio: 'assets/audio/tour_skills.mp3', text: "My technical stack is comprehensive, ranging from Python, TypeScript, and FastAPI to Cloud platforms like Kubernetes, Docker, and Google Cloud, along with deep expertise in network security architecture." },
+  { id: 'projects', audio: 'assets/audio/tour_projects.mp3', text: "My featured projects demonstrate my capability to build complex systems. This includes enterprise platforms, full-stack applications, and automated cybersecurity tools." },
+  { id: 'education', audio: 'assets/audio/tour_education.mp3', text: "My academic background includes a Master of Science in Cybersecurity from Southwest Minnesota State University, and a Bachelor's degree in Computer Science and Engineering from Independent University, Bangladesh." },
+  { id: 'contact', audio: 'assets/audio/tour_contact.mp3', text: "Thank you for joining this tour. If you are looking for a dedicated and innovative tech professional, feel free to reach out through my contact section below. Have a great day!" }
 ];
+
+function stopCurrentTourAudio() {
+  if (currentTourAudio) {
+    try {
+      currentTourAudio.pause();
+      currentTourAudio.currentTime = 0;
+    } catch (e) {}
+    currentTourAudio = null;
+  }
+  if ('speechSynthesis' in window) {
+    try { window.speechSynthesis.cancel(); } catch (e) {}
+  }
+}
 
 function playTourSegment(index) {
   if (index >= tourSegments.length || !isTourRunning) {
     isTourRunning = false;
+    stopCurrentTourAudio();
     if (tourBtn) tourBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>Audio Tour';
     const wrapper = profilePhoto ? profilePhoto.closest('.image-wrapper') : null;
     if (wrapper) wrapper.style.boxShadow = '';
@@ -242,45 +257,74 @@ function playTourSegment(index) {
   if (targetEl) {
     targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
     const originalShadow = targetEl.style.boxShadow;
-    targetEl.style.boxShadow = '0 0 60px rgba(37,99,235,0.3)';
+    targetEl.style.boxShadow = '0 0 60px rgba(37,99,235,0.35)';
     targetEl.style.transition = 'box-shadow 1s';
-    
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const msg = new SpeechSynthesisUtterance(segment.text);
-      
-      const setVoice = () => {
-        const voices = window.speechSynthesis.getVoices();
-        // Priority: Google Neural > Microsoft Natural > Premium > Standard
-        let bestVoice = voices.find(v => v.name.includes('Google US English') || v.name.includes('Google UK English Male')) || 
-                        voices.find(v => v.name.includes('Natural')) ||
-                        voices.find(v => v.name.includes('Premium')) ||
-                        voices.find(v => v.name.includes('Enhanced')) ||
-                        voices.find(v => v.name.includes('Samantha') || v.name.includes('Mark')) ||
-                        voices.find(v => v.lang === 'en-US' || v.lang === 'en-GB');
-                        
-        if (bestVoice) {
-          msg.voice = bestVoice;
-          // Natural voices often sound better at slightly slower rates
-          msg.rate = bestVoice.name.includes('Natural') ? 0.9 : 0.95;
-          msg.pitch = 1;
-        }
-        window.speechSynthesis.speak(msg);
-      };
 
-      if (window.speechSynthesis.getVoices().length > 0) {
-        setVoice();
-      } else {
-        window.speechSynthesis.onvoiceschanged = setVoice;
+    const onSegmentFinished = () => {
+      targetEl.style.boxShadow = originalShadow;
+      if (isTourRunning) {
+        setTimeout(() => playTourSegment(index + 1), 600);
       }
-      
-      msg.onend = () => {
-        targetEl.style.boxShadow = originalShadow;
-        setTimeout(() => playTourSegment(index + 1), 800);
-      };
-      msg.onerror = () => playTourSegment(index + 1);
-    } else {
-      setTimeout(() => playTourSegment(index + 1), 4000);
+    };
+
+    stopCurrentTourAudio();
+
+    // 1. Primary: High-fidelity natural human male studio audio
+    const audio = new Audio(segment.audio);
+    currentTourAudio = audio;
+
+    audio.onended = () => {
+      currentTourAudio = null;
+      onSegmentFinished();
+    };
+
+    const fallbackToSpeechSynthesis = () => {
+      currentTourAudio = null;
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const msg = new SpeechSynthesisUtterance(segment.text);
+        
+        const setMaleVoice = () => {
+          const voices = window.speechSynthesis.getVoices();
+          // Strictly select authentic Male voices
+          const maleVoice = voices.find(v => 
+            (v.name.includes('Natural') || v.name.includes('Neural')) && 
+            (v.name.includes('Guy') || v.name.includes('Christopher') || v.name.includes('Eric') || v.name.includes('Brian') || v.name.includes('David') || v.name.includes('Mark'))
+          ) || voices.find(v => 
+            v.name.includes('Google UK English Male') || 
+            v.name.includes('Microsoft David') || 
+            v.name.includes('Microsoft Mark') || 
+            v.name.includes('Daniel') || 
+            v.name.includes('Oliver') ||
+            (v.name.toLowerCase().includes('male') && !v.name.toLowerCase().includes('female'))
+          );
+
+          if (maleVoice) msg.voice = maleVoice;
+          msg.rate = 0.94;
+          msg.pitch = 0.92; // Natural, warm human male pitch
+        };
+
+        if (window.speechSynthesis.getVoices().length > 0) {
+          setMaleVoice();
+        } else {
+          window.speechSynthesis.onvoiceschanged = setMaleVoice;
+        }
+
+        msg.onend = onSegmentFinished;
+        msg.onerror = onSegmentFinished;
+        window.speechSynthesis.speak(msg);
+      } else {
+        setTimeout(onSegmentFinished, 4000);
+      }
+    };
+
+    audio.onerror = fallbackToSpeechSynthesis;
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        fallbackToSpeechSynthesis();
+      });
     }
   } else {
     playTourSegment(index + 1);
@@ -288,10 +332,9 @@ function playTourSegment(index) {
 }
 
 function startAudioTour() {
-  if (!('speechSynthesis' in window)) return alert("Your browser doesn't support Text to Speech.");
   if (isTourRunning) {
-    window.speechSynthesis.cancel();
     isTourRunning = false;
+    stopCurrentTourAudio();
     if (tourBtn) tourBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>Audio Tour';
     const wrapper = profilePhoto ? profilePhoto.closest('.image-wrapper') : null;
     if (wrapper) wrapper.style.boxShadow = '';
@@ -304,7 +347,7 @@ function startAudioTour() {
   if (wrapper) wrapper.style.boxShadow = '0 0 100px #2563EB, inset 0 0 50px #2563EB';
   
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  setTimeout(() => playTourSegment(0), 1000);
+  setTimeout(() => playTourSegment(0), 600);
 }
 
 if (tourBtn) tourBtn.addEventListener('click', startAudioTour);
