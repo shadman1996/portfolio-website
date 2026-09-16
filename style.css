@@ -87,7 +87,7 @@ img { max-width: 100%; display: block; }
   backdrop-filter: blur(20px);
   border-radius: var(--radius);
   transition: var(--transition);
-  box-shadow: 0 4px 24px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  box-shadow: 0 4px 24pxrgba(37, 99, 235, 0.25);
 }
 .glass:hover {
   background: var(--bg-card-hover);
@@ -114,9 +114,9 @@ img { max-width: 100%; display: block; }
 .btn-primary {
   background: var(--accent-grad);
   color: #fff;
-  box-shadow: 0 4px 20px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  box-shadow: 0 4px 20pxrgba(37, 99, 235, 0.25);
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px  "rgba(37,99,235,$($args[0].Groups[1].Value))" ; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30pxrgba(37, 99, 235, 0.25); }
 .btn-ghost {
   background: transparent;
   color: var(--text-primary);
@@ -128,7 +128,7 @@ img { max-width: 100%; display: block; }
   color: var(--accent);
   border: 1.5px solid var(--accent);
 }
-.btn-outline:hover { background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ; transform: translateY(-2px); }
+.btn-outline:hover { background:rgba(37, 99, 235, 0.15); transform: translateY(-2px); }
 .full-width { width: 100%; justify-content: center; }
 
 /* ===== SECTION HEADERS ===== */
@@ -136,8 +136,8 @@ img { max-width: 100%; display: block; }
 .section-tag {
   display: inline-block;
   padding: 6px 18px;
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
-  border: 1px solid  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  background:rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
   border-radius: 50px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -330,8 +330,8 @@ body:not(.light-mode) .ts-dark {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient( "rgba(37,99,235,$($args[0].Groups[1].Value))"  1px, transparent 1px),
-    linear-gradient(90deg,  "rgba(37,99,235,$($args[0].Groups[1].Value))"  1px, transparent 1px);
+    linear-gradient(rgba(37, 99, 235, 0.05)1px, transparent 1px),
+    linear-gradient(90deg,rgba(37, 99, 235, 0.05)1px, transparent 1px);
   background-size: 60px 60px;
 }
 .hero-glow {
@@ -367,8 +367,8 @@ body:not(.light-mode) .ts-dark {
   align-items: center;
   gap: 10px;
   padding: 8px 20px;
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
-  border: 1px solid  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  background:rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 500;
@@ -722,31 +722,80 @@ body.light-mode .image-badge svg {
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
-.skill-category { padding: 28px; }
+.skill-category {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.skill-category:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
 .skill-cat-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
 }
-.skill-icon { font-size: 1.5rem; }
-.skill-cat-header h3 { font-size: 1rem; font-weight: 700; }
-.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-icon { font-size: 1.5rem; flex-shrink: 0; }
+.skill-cat-header h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+.skill-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.skill-group-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
 .skill-tags span {
-  padding: 5px 13px;
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
-  border: 1px solid  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
-  border-radius: 50px;
+  padding: 4px 10px;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: 6px;
   font-size: 0.8rem;
-  color: var(--text-secondary);
+  font-weight: 500;
+  color: var(--text-primary);
   transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
 }
 .skill-tags span:hover {
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  background: rgba(37, 99, 235, 0.18);
+  border-color: rgba(37, 99, 235, 0.45);
   color: var(--accent);
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  transform: translateY(-1px);
+}
+body.light-mode .skill-tags span {
+  background: rgba(37, 99, 235, 0.07);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  color: #1e293b;
+}
+body.light-mode .skill-tags span:hover {
+  background: rgba(37, 99, 235, 0.14);
+  border-color: #2563EB;
+  color: #1d4ed8;
 }
 
 /* ===========================
@@ -764,8 +813,8 @@ body.light-mode .image-badge svg {
   flex-direction: column;
 }
 .project-card.featured {
-  border-color:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  border-color:rgba(37, 99, 235, 0.2);
+  background:rgba(37, 99, 235, 0.08);
 }
 .project-card-top {
   display: flex;
@@ -795,7 +844,7 @@ body.light-mode .image-badge svg {
   color: var(--text-secondary);
   transition: var(--transition);
 }
-.project-link:hover { color: var(--accent); border-color: var(--accent); background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ; }
+.project-link:hover { color: var(--accent); border-color: var(--accent); background:rgba(37, 99, 235, 0.08); }
 .project-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
 .project-desc {
   font-size: 0.88rem;
@@ -937,7 +986,7 @@ body.light-mode .image-badge svg {
   font-family: var(--font-main);
   transition: var(--transition);
 }
-.cert-tab:hover { border-color: var(--accent); color: var(--accent); background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ; }
+.cert-tab:hover { border-color: var(--accent); color: var(--accent); background:rgba(37, 99, 235, 0.08); }
 .cert-tab.active {
   background: var(--accent-grad);
   color: #fff;
@@ -1023,8 +1072,8 @@ body:not(.light-mode) .edu-logo {
 .edu-projects { display: flex; flex-wrap: wrap; gap: 8px; }
 .edu-projects span {
   padding: 4px 12px;
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
-  border: 1px solid  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  background:rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
   border-radius: 50px;
   font-size: 0.77rem;
   color: var(--accent);
@@ -1055,8 +1104,8 @@ body:not(.light-mode) .edu-logo {
   justify-content: center;
   font-size: 1.2rem;
   flex-shrink: 0;
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
-  border: 1px solid  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  background:rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
 }
 .contact-item-label {
   display: block;
@@ -1099,7 +1148,7 @@ body:not(.light-mode) .edu-logo {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent);
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  background:rgba(37, 99, 235, 0.08);
 }
 .form-group input::placeholder,
 .form-group textarea::placeholder { color: var(--text-muted); }
@@ -1171,7 +1220,7 @@ body:not(.light-mode) .edu-logo {
 .social-btn:hover {
   color: var(--accent);
   border-color: var(--accent);
-  background:  "rgba(37,99,235,$($args[0].Groups[1].Value))" ;
+  background:rgba(37, 99, 235, 0.08);
   transform: translateY(-2px);
 }
 .footer-bottom {
