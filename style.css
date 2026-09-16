@@ -267,7 +267,7 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 .ts-knob::after {
-  content: 'ðŸŒ™';
+  content: '\1F319';
 }
 
 /* Light Mode Slider State */
@@ -282,7 +282,7 @@ body.light-mode .ts-knob {
   box-shadow: 0 2px 8px rgba(250, 204, 21, 0.4);
 }
 body.light-mode .ts-knob::after {
-  content: 'â˜€ï¸';
+  content: '\2600\FE0F';
 }
 body.light-mode .ts-light {
   color: var(--accent);
